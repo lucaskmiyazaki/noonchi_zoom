@@ -15,14 +15,24 @@ export default function App() {
     try {
       const config = {
         videoSDKJWT: '',
-        sessionName: 'emotion-room',
+        sessionName: 'Noonchi',
         userName: name,
+        role: 0,
         leaveOnPageUnload: true,
         featuresOptions: {
           video: { enable: true },
           audio: { enable: true },
           users: { enable: true },
           chat: { enable: true },
+
+          recording: { enable: false },
+          chat: { enable: false },
+
+          viewMode: {
+            enable: true,
+            defaultViewMode: 'gallery',
+            viewModes: ['gallery', 'speaker']
+          },
 
           settings: { enable: false },
           caption: { enable: false },
@@ -87,12 +97,6 @@ export default function App() {
 
   return (
     <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <div style={{ padding: 16 }}>
-        <h1>Simple Zoom React Meeting</h1>
-        <p>Joined as: {userName}</p>
-        <button onClick={leaveSession}>Leave Meeting</button>
-      </div>
-
       <div
         ref={sessionContainerRef}
         style={{

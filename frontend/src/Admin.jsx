@@ -20,7 +20,8 @@ export default function AdminPage() {
     try {
       const config = {
         videoSDKJWT: '',
-        sessionName: 'emotion-room',
+        sessionName: 'Noonchi',
+        role: 1,
         userName: adminName,
         leaveOnPageUnload: true,
         debug: true,
@@ -29,6 +30,12 @@ export default function AdminPage() {
           audio: { enable: true },
           users: { enable: true },
           chat: { enable: true },
+
+          viewMode: {
+            enable: true,
+            defaultViewMode: 'gallery',
+            viewModes: ['gallery', 'speaker']
+          },
 
           settings: { enable: false },
           caption: { enable: false },
@@ -163,13 +170,6 @@ export default function AdminPage() {
 
   return (
     <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <div style={{ padding: 16 }}>
-        <h1>Admin Zoom Meeting</h1>
-        <p>Joined as: {adminName}</p>
-        <p>Status: {joined ? 'joined' : 'joining...'}</p>
-        <button onClick={leaveSession}>Leave Meeting</button>
-      </div>
-
       <div
         style={{
           flex: 1,
@@ -190,6 +190,9 @@ export default function AdminPage() {
           }}
         >
           <h2 style={{ marginTop: 0, fontSize: 18 }}>Participants</h2>
+          <p style={{ marginTop: 0, color: '#666' }}>
+            Status: {joined ? 'joined' : 'joining...'}
+          </p>
 
           {participants.length === 0 ? (
             <p>No other participants in the room.</p>
@@ -257,12 +260,20 @@ export default function AdminPage() {
         </div>
 
         <div
-          ref={sessionContainerRef}
           style={{
             flex: 1,
-            width: '100%'
+            minWidth: 0,
+            minHeight: 0
           }}
-        />
+        >
+          <div
+            ref={sessionContainerRef}
+            style={{
+              width: '100%',
+              height: '100%'
+            }}
+          />
+        </div>
       </div>
     </div>
   )
