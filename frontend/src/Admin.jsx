@@ -13,7 +13,7 @@ export default function AdminPage() {
   const [participants, setParticipants] = useState([])
   const [sendingUserId, setSendingUserId] = useState(null)
 
-  const authEndpoint = 'http://localhost:4000/signature'
+  const authEndpoint = '/signature'
   const adminName = 'admin'
 
   async function joinSession() {

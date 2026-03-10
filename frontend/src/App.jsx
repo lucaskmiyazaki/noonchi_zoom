@@ -9,8 +9,8 @@ export default function App() {
   const [joined, setJoined] = useState(false)
   const [userName, setUserName] = useState('')
 
-  const authEndpoint = 'http://localhost:4000/signature'
-
+  const authEndpoint = '/signature'
+  
   async function joinSession(name) {
     try {
       const config = {
@@ -23,7 +23,6 @@ export default function App() {
           video: { enable: true },
           audio: { enable: true },
           users: { enable: true },
-          chat: { enable: true },
 
           recording: { enable: false },
           chat: { enable: false },
